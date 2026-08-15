@@ -20,7 +20,7 @@ output "datasync_location_s3s_s3_bucket_arn" {
 }
 output "datasync_location_s3s_s3_config" {
   description = "Map of s3_config values across all datasync_location_s3s, keyed the same as var.datasync_location_s3s"
-  value       = { for k, v in aws_datasync_location_s3.datasync_location_s3s : k => v.s3_config if v.s3_config != null && length(v.s3_config) > 0 }
+  value       = { for k, v in aws_datasync_location_s3.datasync_location_s3s : k => one(v.s3_config) if v.s3_config != null && length(v.s3_config) > 0 }
 }
 output "datasync_location_s3s_s3_storage_class" {
   description = "Map of s3_storage_class values across all datasync_location_s3s, keyed the same as var.datasync_location_s3s"
